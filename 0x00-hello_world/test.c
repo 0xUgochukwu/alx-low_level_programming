@@ -1,7 +1,5 @@
 #include <stdio.h>
 
-/* Just messing around here */
-
 int main() {
     putchar('H');
     putchar('e');
