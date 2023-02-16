@@ -1,4 +1,5 @@
 	.file	"test.c"
+	.intel_syntax noprefix
 	.text
 	.globl	main
 	.type	main, @function
@@ -6,25 +7,25 @@ main:
 .LFB0:
 	.cfi_startproc
 	endbr64
-	pushq	%rbp
+	push	rbp
 	.cfi_def_cfa_offset 16
 	.cfi_offset 6, -16
-	movq	%rsp, %rbp
+	mov	rbp, rsp
 	.cfi_def_cfa_register 6
-	movl	$72, %edi
+	mov	edi, 72
 	call	putchar@PLT
-	movl	$101, %edi
+	mov	edi, 101
 	call	putchar@PLT
-	movl	$108, %edi
+	mov	edi, 108
 	call	putchar@PLT
-	movl	$108, %edi
+	mov	edi, 108
 	call	putchar@PLT
-	movl	$111, %edi
+	mov	edi, 111
 	call	putchar@PLT
-	movl	$10, %edi
+	mov	edi, 10
 	call	putchar@PLT
-	movl	$0, %eax
-	popq	%rbp
+	mov	eax, 0
+	pop	rbp
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
