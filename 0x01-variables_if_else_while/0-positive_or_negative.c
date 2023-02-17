@@ -10,9 +10,10 @@
  */
 int main(void)
 {
-	srand(time(NULL));
-
+	
 	long n = rand();
+
+	srand(time(NULL));
 
 	if (n < 0)
 	{
