@@ -31,8 +31,8 @@ int main(void)
 					putchar(' ');
 					putchar(i / 10 + '0');
 					putchar(i % 10 + '0');
-			       	}
-				
+				}
+
 				if (i != 99 || j != 99)
 				{
 					putchar(',');
