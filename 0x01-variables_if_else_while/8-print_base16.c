@@ -15,7 +15,7 @@ int main(void)
 		putchar('0' + i);
 	}
 
-	for (j = 97; j < 10; j++)
+	for (j = 97; j < 102; j++)
 	{
 		putchar((char) j);
 	}
