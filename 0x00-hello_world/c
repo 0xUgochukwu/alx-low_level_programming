@@ -725,9 +725,7 @@ extern int __overflow (FILE *, int);
 # 2 "test.c" 2
 
 
-
-
-# 5 "test.c"
+# 3 "test.c"
 int main() {
     putchar('H');
     putchar('e');
