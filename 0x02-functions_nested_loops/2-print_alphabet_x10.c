@@ -13,7 +13,7 @@ void print_alphabet_10x(void)
 	int i = 0;
 	int n = 97;
 
-	while (n < 10)
+	while (i < 10)
 	{
 		n = 97;
 
