@@ -7,7 +7,7 @@
  * @n: number to be checked for sign
  * Description: This function prints the sign of
  * the number inputed.
- * Return: 0 or 1;
+ * Return: 0, -1 or 1;
  */
 
 
