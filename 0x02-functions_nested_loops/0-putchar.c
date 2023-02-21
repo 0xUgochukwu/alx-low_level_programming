@@ -8,7 +8,25 @@
  */
 int main(void)
 {
-	printf("_putchar\n");
+	char str[] = "_putchar\n";
+	int i = 0;
+	
+	while (i < 9)
+	{
+		_putchar(str[i++]);
+	}
 
 	return (0);
+}
+
+
+
+/**
+ * _putchar - the program entry point
+ * Description: This function prints a character
+ * Return:No return value
+ */
+void _putchar(char c)
+{
+	putchar(c);
 }
