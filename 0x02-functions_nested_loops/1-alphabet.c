@@ -1,20 +1,4 @@
-#include <stdio.h>
 #include "main.h"
-
-/**
- * main - the program entry point
- * Description: This function prints alphabets in lowercase
- * Return: the function retuens zero
- */
-int main(void)
-{
-	print_alphabet();
-
-	putchar('\n');
-
-
-	return (0);
-}
 
 
 
@@ -30,6 +14,8 @@ void print_alphabet(void)
 
 	while (n < 123)
 	{
-		putchar((char) n);
+		_putchar((char) n++);
 	}
+
+	_putchar('\n');
 }
