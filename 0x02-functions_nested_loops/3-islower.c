@@ -4,7 +4,8 @@
 
 
 /**
- * islower - check if an alphabet is lower
+ * _islower - check if an alphabet is lower
+ * @c: the character to be checked
  * Description: This function returns 1 or 0 based
  * on the alphabet casing
  * Return: 0 or 1;
