@@ -18,15 +18,3 @@ int main(void)
 
 	return (0);
 }
-
-
-
-/**
- * _putchar - the program entry point
- * Description: This function prints a character
- * Return:No return value
- */
-void _putchar(char c)
-{
-	putchar(c);
-}
