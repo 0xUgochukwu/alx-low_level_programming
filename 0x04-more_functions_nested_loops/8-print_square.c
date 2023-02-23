@@ -25,4 +25,10 @@ void print_square(int size)
 		_putchar('\n');
 		i++;
 	}
+
+	if (size <= 0)
+	{
+		_putchar('\n');
+	}
+
 }
