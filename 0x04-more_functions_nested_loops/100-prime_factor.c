@@ -13,11 +13,11 @@ int main(void)
 	long int n = 612852475143;
 	long int hpf;
 
-	for (hpf = 2; hpf < x; hpf++)
+	for (hpf = 2; hpf < n; hpf++)
 	{
-		if (x % hpf == 0)
+		if (n % hpf == 0)
 		{
-			x /= hpf;
+			n /= hpf;
 		}
 	}
 
