@@ -1,5 +1,5 @@
 # ALX SE
 
-## Systems Engineering / Devops Basics
+## Low Level Programming
 
-### C Basics - Hello World
+### C Basics - Functions and Nested Loops
