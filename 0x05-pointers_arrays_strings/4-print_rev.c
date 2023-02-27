@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <string.h>
 #include "main.h"
 
@@ -15,9 +14,9 @@ void print_rev(char *s)
 
 	while (i <= len)
 	{
-		putchar(s[len - i++]);
+		_putchar(s[len - i++]);
 	}
 
-	putchar('\n');
+	_putchar('\n');
 
 }
