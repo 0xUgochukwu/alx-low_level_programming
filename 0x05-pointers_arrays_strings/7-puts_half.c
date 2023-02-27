@@ -10,7 +10,6 @@
 
 void puts_half(char *str)
 {
-	int i = 0;
 	int n;
 	int len = strlen(str);
 
@@ -21,7 +20,7 @@ void puts_half(char *str)
 	}
 	else
 	{
-		n = (len / 2)++;
+		n = (len / 2) + 1;
 	}
 
 	while (n < len)
