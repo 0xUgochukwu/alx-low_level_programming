@@ -7,14 +7,14 @@
  * Return: Uppercase string
  */
 
-char *string_toupper(char *str)
+char *string_toupper(char *n)
 {
 	int i = 0;
 
-	while (str[i] != '\0')
+	while (n[i] != '\0')
 	{
-		str[i] = toupper(str[i++]);
+		n[i] = toupper(n[i++]);
 	}
 
-	return (str);
+	return (n);
 }
