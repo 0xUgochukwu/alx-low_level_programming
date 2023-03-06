@@ -2,7 +2,7 @@
 
 
 /**
- * _memset: set memory locations to a constant variable
+ * _memset - set memory locations to a constant variable
  * @s: pointer to memory location that'll be set
  * @b: constant byte
  * @n: number of bytes to be set
