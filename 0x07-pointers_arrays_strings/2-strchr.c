@@ -2,7 +2,7 @@
 
 
 /**
- * strchr - locates the first occurence of a character
+ * _strchr - locates the first occurence of a character
  * in a string
  * @s: string to be searched
  * @c: character to be found
@@ -17,8 +17,10 @@ char *_strchr(char *s, char c)
 	while (s[i] != '\0')
 	{
 		if (s[i] == c)
+		{
 			return (s[i]);
-		
+		}
+
 		i++;
 	}
 
