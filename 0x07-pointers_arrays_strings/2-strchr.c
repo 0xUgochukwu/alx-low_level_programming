@@ -23,6 +23,13 @@ char *_strchr(char *s, char c)
 		i++;
 	}
 
-	return (NULL);
+	if (s[i] = c)
+	{
+		return (&s[i]);
+	}
+	else
+	{
+		return (NULL);
+	}
 
 }
