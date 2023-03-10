@@ -1,29 +1,33 @@
-#include "holberton.h"
+#include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 /**
- * _atoi - int
- * @s: pointer
- * Return: int.
+ * _atoi - Prints every other letter in a string
+ * @s: string
+ * Return: int value
  */
 int _atoi(char *s)
 {
-	int i;
-	int res = 0;
-	int sig = -1;
-	int brk = 0;
-
-	for (i = 0; s[i] != '\0'; i++)
+	if (atoi(s) == 0)
 	{
-		if (s[i] == '-')
-			sig = sig * -1;
-		if (s[i] >= '0' && s[i] <= '9')
+		int sign = 1, i = 0;
+		unsigned int res = 0;
+
+		while (!(s[i] <= '9' && s[i] >= '0') && s[i] != '\0')
 		{
-			res = res * 10;
-			res -= (s[i] - '0');
-			brk = 1;
+			if (s[i] == '-')
+				sign *= -1;
+			i++;
 		}
-		else if (brk == 1)
-			break;
+		while (s[i] <= '9' && (s[i] >= '0' && s[i] != '\0'))
+		{
+			res = (res * 10) + (s[i] - '0');
+			i++;
+		}
+		res *= sign;
+		return (res);
 	}
-	res = sig * res;
-	return (res);
+	return (atoi(s));
 }

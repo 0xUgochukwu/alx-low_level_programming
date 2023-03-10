@@ -1,18 +1,17 @@
-#include "holberton.h"
+#include <stdlib.h>
+#include "main.h"
+
+
 
 /**
- * _abs - check the code for Holberton School students.
- *
- * @n: is an integer argument
- *
- * Return: Always 0.
+ * _abs - absolute value
+ * @n: the number to be used in the funnction
+ * Description: this function returns the absoulte
+ * value of a number(n) passed to it
+ * Return: int - absolute value
  */
 
 int _abs(int n)
 {
-	if (n >= 0)
-	{
-		return (n);
-	}
-	return (-n);
+	return (abs(n));
 }
