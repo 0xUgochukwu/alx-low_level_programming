@@ -1,3 +1,3 @@
 #!/bin/bash
 find . -type f -name '*.c' -exec gcc -c {} \;
-ar -rc libmy.a *.o
+ar -rc liball.a *.o
