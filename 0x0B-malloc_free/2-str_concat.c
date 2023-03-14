@@ -13,6 +13,7 @@
 char *str_concat(char *s1, char *s2)
 {
 	int len = 0;
+	char *p;
 
 	if (!s1)
 		s1 = "";
@@ -21,8 +22,9 @@ char *str_concat(char *s1, char *s2)
 		s2 = "";
 
 	len = strlen(s1);
+	p = s1 + len
 	
-	s1[len] = s2;
+	*p  = s2;
 
 	return (s1);
 }
