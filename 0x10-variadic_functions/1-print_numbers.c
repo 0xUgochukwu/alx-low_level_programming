@@ -3,7 +3,7 @@
 
 /**
  * print_numbers - print all numbers with a separator
- * @seprator: sperator when printing
+ * @separator: sperator when printing
  * @n: number of arguments passed
  */
 
@@ -17,7 +17,7 @@ void print_numbers(const char *separator, const unsigned int n, ...)
 	if (separator == NULL)
 		return;
 
-	
+
 	va_start(ap, n);
 
 
