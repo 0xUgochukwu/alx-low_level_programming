@@ -8,7 +8,7 @@
  * Return: pointer to the new element or NULL
  */
 
-listint_t *add_nodeint(listint_t **head, const int n)
+listint_t *add_nodeint_end(listint_t **head, const int n)
 {
 	listint_t *new_node, *tmp;
 
@@ -17,14 +17,21 @@ listint_t *add_nodeint(listint_t **head, const int n)
 	if (new_node == NULL)
 		return (NULL);
 
-	tmp = *head;
-
-	while (tmp)
-		tmp = tmp->next;
-
+	
 	new_node->n = n;
 	new_node->next = NULL;
-	tmp->next = new_node;
+
+	if (*head == NULL)
+		*head = new_node;
+	else
+	{
+		tmp = *head;
+
+		while (tmp->next)
+			tmp = tmp->next;
+
+		tmp->next = new_node;
+	}
 
 	return (new_node);
 }
