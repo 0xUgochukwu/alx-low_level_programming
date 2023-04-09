@@ -11,7 +11,7 @@ void print_binary(unsigned long int n)
 	int i = 63, start = 0;
 	unsigned long int current;
 
-	while (i <= 0)
+	while (i >= 0)
 	{
 		current = n >> i--;
 
