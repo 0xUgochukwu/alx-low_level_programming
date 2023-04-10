@@ -5,55 +5,83 @@ void print_error(char* message) {
 	dprintf(STDERR_FILENO, "%s\n", message);
 }
 
-void print_elf_header_info(Elf64_Ehdr* elf_header)
+
+void print_elf_header(const Elf64_Ehdr* elf_header)
 {
-	int i;
-	printf("Magic:   ");
-	for (i = 0; i < EI_NIDENT; i++) {
-		printf("%02x ", elf_header->e_ident[i]);
-	}
-	printf("\n");
-	printf("Class:                             %s\n", elf_header->e_ident[EI_CLASS] == ELFCLASS32 ? "ELF32" : "ELF64");
-	printf("Data:                              %s\n", elf_header->e_ident[EI_DATA] == ELFDATA2MSB ? "2's complement, big endian" : "2's complement, little endian");
-	printf("Version:                           %d%s\n", elf_header->e_ident[EI_VERSION], elf_header->e_ident[EI_VERSION] == EV_CURRENT ? " (current)" : "");
-	printf("OS/ABI:                            %d\n", elf_header->e_ident[EI_OSABI]);
-	printf("ABI Version:                       %d\n", elf_header->e_ident[EI_ABIVERSION]);
-	printf("Type:                              %d\n", elf_header->e_type);
-	printf("Entry point address:               0x%lx\n", elf_header->e_entry);
-}
+    const char* class_str = "none";
+    const char* data_str = "none";
+    const char* version_str = "none";
+    const char* osabi_str = "none";
+    const char* type_str = "none";
 
-int main(int argc, char** argv) {
-	int fd;
-	Elf64_Ehdr elf_header;
+    switch (elf_header->e_ident[EI_CLASS]) {
+        case ELFCLASS32:
+            class_str = "ELF32";
+            break;
+        case ELFCLASS64:
+            class_str = "ELF64";
+            break;
+    }
 
-	if (argc != 2) {
-		print_error("Usage: elf_header elf_filename");
-		exit(97);
-	}
+    switch (elf_header->e_ident[EI_DATA]) {
+        case ELFDATA2LSB:
+            data_str = "2's complement, little endian";
+            break;
+        case ELFDATA2MSB:
+            data_str = "2's complement, big endian";
+            break;
+    }
 
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1) {
-		print_error("Error: Cannot open file");
-		exit(98);
-	}
+    switch (elf_header->e_ident[EI_VERSION]) {
+        case EV_NONE:
+            version_str = "0 (invalid)";
+            break;
+        case EV_CURRENT:
+            version_str = "1 (current)";
+            break;
+    }
 
-	if (read(fd, &elf_header, sizeof(Elf64_Ehdr)) != sizeof(Elf64_Ehdr)) {
-		print_error("Error: Cannot read ELF header");
-		exit(98);
-	}
+    switch (elf_header->e_ident[EI_OSABI]) {
+        case ELFOSABI_SYSV:
+            osabi_str = "UNIX - System V";
+            break;
+        case ELFOSABI_LINUX:
+            osabi_str = "UNIX - GNU/Linux";
+            break;
+        case ELFOSABI_SOLARIS:
+            osabi_str = "UNIX - Solaris";
+            break;
+    }
 
-	if (memcmp(elf_header.e_ident, ELFMAG, SELFMAG) != 0) {
-		print_error("Error: Not an ELF file");
-		exit(98);
-	}
+    switch (elf_header->e_type) {
+        case ET_NONE:
+            type_str = "NONE (None)";
+            break;
+        case ET_REL:
+            type_str = "REL (Relocatable file)";
+            break;
+        case ET_EXEC:
+            type_str = "EXEC (Executable file)";
+            break;
+        case ET_DYN:
+            type_str = "DYN (Shared object file)";
+            break;
+        case ET_CORE:
+            type_str = "CORE (Core file)";
+            break;
+    }
 
-	print_elf_header_info(&elf_header);
-
-	if (close(fd) == -1) {
-		print_error("Error: Cannot close file");
-		exit(100);
-	}
-
-	return 0;
+    printf("Magic:   ");
+    for (int i = 0; i < EI_NIDENT; i++) {
+        printf("%02x ", elf_header->e_ident[i]);
+    }
+    printf("\n");
+    printf("Class:                             %s\n", class_str);
+    printf("Data:                              %s\n", data_str);
+    printf("Version:                           %s\n", version_str);
+    printf("OS/ABI:                            %s\n", osabi_str);
+    printf("ABI Version:                       %d\n", elf_header->e_ident[EI_ABIVERSION]);
+    printf("Type:                              %s\n", type_str);
+    printf("Entry point address:               0x%lx\n", elf_header->e_entry);
 }
 
