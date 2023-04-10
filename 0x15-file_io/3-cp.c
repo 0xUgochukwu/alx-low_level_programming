@@ -12,7 +12,7 @@ int main(int ac, char **av)
 {
 	int src_fd, dest_fd;
 	mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
-	char *buffer[BUFFER_SIZE];
+	char buffer[BUFFER_SIZE];
 	ssize_t bytes_written, bytes_read;
 
 	if (ac != 3)
