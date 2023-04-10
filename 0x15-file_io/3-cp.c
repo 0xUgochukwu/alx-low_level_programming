@@ -3,8 +3,8 @@
 
 /**
  * main - copies one file into another
- * ac: arguments count
- * av: arguments array
+ * @ac: arguments count
+ * @av: arguments array
  * Return: integer
  */
 
@@ -29,16 +29,11 @@ int main(int ac, char **av)
 	}
 
 	dest_fd = open(av[2], O_WRONLY | O_CREAT | O_TRUNC, mode);
-	if (dest_fd == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
-		return (99);
-	}
 
 	while ((bytes_read = read(src_fd, buffer, sizeof(buffer))) > 0)
 	{
 		bytes_written = write(dest_fd, buffer, bytes_read);
-		if (bytes_read != bytes_written)
+		if (dest_fd == -1 || bytes_read != bytes_written)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
 			close(src_fd);
@@ -49,7 +44,7 @@ int main(int ac, char **av)
 	if (bytes_read < 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
-		exit(98);
+		return (98);
 	}
 
 	return (_close(src_fd, dest_fd));
@@ -66,18 +61,18 @@ int main(int ac, char **av)
 
 int _close(int src_fd, int dest_fd)
 {
-	int return_val = 0;
+	int rval = 0;
 
 	if (close(src_fd) == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", src_fd);
-		return_val = 100;
+		rval = 100;
 	}
 
 	if (close(dest_fd) == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", dest_fd);
-		return_val = 100;
+		rval = 100;
 	}
 	return (return_val);
 }
