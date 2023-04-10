@@ -11,7 +11,9 @@
 int main(int ac, char **av)
 {
 	char *message;
-	if (ac != 2) {
+
+	if (ac != 2)
+	{
 		message = av[0];
 		dprintf(STDERR_FILENO, "%s\n", message);
 		return (98);
