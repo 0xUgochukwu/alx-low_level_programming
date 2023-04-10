@@ -74,5 +74,5 @@ int _close(int src_fd, int dest_fd)
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", dest_fd);
 		rval = 100;
 	}
-	return (return_val);
+	return (rval);
 }
