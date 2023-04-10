@@ -21,15 +21,15 @@ int create_file(const char *filename, char *text_content)
 
 	if (text_content != NULL)
 	{
-		num_written = write(filename, text_content, strlen(text_content));
+		num_written = write(fd, text_content, strlen(text_content));
 
 		if (num_written == -1)
 		{
-			fclose(fd);
+			close(fd);
 			return (-1);
 		}
 	}
 
-	fclose(fd);
+	close(fd);
 	return (1);
 }
