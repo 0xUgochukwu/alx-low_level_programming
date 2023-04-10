@@ -15,7 +15,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 	if (filename == NULL)
 		return (0);
-	
+
 	fp = fopen(filename, "r");
 
 	if (fp == NULL)
@@ -25,7 +25,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	{
 		if (write(STDOUT_FILENO, &c, 1) != 1)
 			return (0);
-		
+
 		i++;
 	}
 
