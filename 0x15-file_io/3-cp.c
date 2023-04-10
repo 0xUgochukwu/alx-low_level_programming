@@ -21,14 +21,12 @@ int main(int argc, char *argv[]) {
         return 97;
     }
 
-    // Open the source file
     fd_from = open(argv[1], O_RDONLY);
     if (fd_from == -1) {
         dprintf(STDERR_FILENO, "Error: Can't read from file %s: %s\n", argv[1], strerror(errno));
         return 98;
     }
 
-    // Open the destination file
     fd_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, mode);
     if (fd_to == -1) {
         dprintf(STDERR_FILENO, "Error: Can't write to %s: %s\n", argv[2], strerror(errno));
@@ -36,7 +34,6 @@ int main(int argc, char *argv[]) {
         return 99;
     }
 
-    // Copy the contents of the source file to the destination file
     while ((num_read = read(fd_from, buffer, BUFFER_SIZE)) > 0) {
         num_written = write(fd_to, buffer, num_read);
         if (num_written == -1 || num_written != num_read) {
@@ -47,7 +44,6 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    // Check for errors during read
     if (num_read == -1) {
         dprintf(STDERR_FILENO, "Error: Can't read from file %s: %s\n", argv[1], strerror(errno));
         close(fd_from);
@@ -55,7 +51,6 @@ int main(int argc, char *argv[]) {
         return 98;
     }
 
-    // Close the file descriptors
     if (close(fd_from) == -1) {
         dprintf(STDERR_FILENO, "Error: Can't close fd %d: %s\n", fd_from, strerror(errno));
         return 100;
