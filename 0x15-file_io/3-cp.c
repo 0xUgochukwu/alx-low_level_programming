@@ -42,7 +42,7 @@ int main(int ac, char **av)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
 			close(src_fd);
-			close(des_fd);
+			close(dest_fd);
 			return (99);
 		}
 	}
