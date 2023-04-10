@@ -14,8 +14,9 @@ int main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		message = av[0];
+		message = "Usage: elf_header elf_filename";
 		dprintf(STDERR_FILENO, "%s\n", message);
+		message = av[0];
 		return (98);
 	}
 	return (0);
