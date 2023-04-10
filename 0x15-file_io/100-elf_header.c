@@ -3,6 +3,14 @@
 
 void print_error(char* message) {
 	dprintf(STDERR_FILENO, "%s\n", message);
+	exit(98);
+}
+
+bool is_elf_file(const Elf64_Ehdr* elf_header) {
+    if (strncmp((const char*)elf_header->e_ident, ELFMAG, SELFMAG) != 0) {
+        return false;
+    }
+    return true;
 }
 
 
@@ -13,6 +21,7 @@ void print_elf_header(const Elf64_Ehdr* elf_header)
     const char* version_str = "none";
     const char* osabi_str = "none";
     const char* type_str = "none";
+    int i = 0;
 
     switch (elf_header->e_ident[EI_CLASS]) {
         case ELFCLASS32:
@@ -72,7 +81,7 @@ void print_elf_header(const Elf64_Ehdr* elf_header)
     }
 
     printf("Magic:   ");
-    for (int i = 0; i < EI_NIDENT; i++) {
+    for (i = 0; i < EI_NIDENT; i++) {
         printf("%02x ", elf_header->e_ident[i]);
     }
     printf("\n");
@@ -85,3 +94,43 @@ void print_elf_header(const Elf64_Ehdr* elf_header)
     printf("Entry point address:               0x%lx\n", elf_header->e_entry);
 }
 
+
+
+int main(int argc, char* argv[]) 
+{
+Elf64_Ehdr elf_header;
+const char* filename;
+int nread, fd;
+
+if (argc != 2) {
+print_error("Usage: elf_header elf_filename");
+return 98;
+}
+
+filename = argv[1];
+
+fd = open(filename, O_RDONLY);
+if (fd < 0) {
+    print_error("Error opening file");
+    return 98;
+}
+
+nread = read(fd, &elf_header, sizeof(Elf64_Ehdr));
+if (nread < 0) {
+    print_error("Error reading file");
+    close(fd);
+    return 98;
+}
+
+if (!is_elf_file(&elf_header)) {
+    print_error("File is not an ELF file");
+    close(fd);
+    return 98;
+}
+
+print_elf_header(&elf_header);
+
+close(fd);
+
+return 0;
+}
