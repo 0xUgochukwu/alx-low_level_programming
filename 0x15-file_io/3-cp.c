@@ -11,7 +11,7 @@
 int main(int ac, char **av)
 {
 	int src_fd, dest_fd;
-	/* mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH; */
+	mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
 	char buffer[BUFFER_SIZE];
 	ssize_t bytes_written, bytes_read;
 
@@ -28,7 +28,7 @@ int main(int ac, char **av)
 		return (98);
 	}
 
-	dest_fd = creat(av[2], 0664);
+	dest_fd = open(av[2], O_WRONLY | O_CREAT | O_TRUNC, mode);
 
 	while ((bytes_read = read(src_fd, buffer, sizeof(buffer))) > 0)
 	{
