@@ -28,7 +28,7 @@ int main(int ac, char **av)
 		return (98);
 	}
 
-	dest_fd = open(av[2], O_WRONLY | O_CREAT | O_TRUNC, mode);
+	dest_fd = creat(av[2], mode);
 
 	while ((bytes_read = read(src_fd, buffer, sizeof(buffer))) > 0)
 	{
