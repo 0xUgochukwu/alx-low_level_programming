@@ -5,7 +5,8 @@
  * @ht: The hash table to look into.
  * @key: The key to look for.
  *
- * Return: The value associated with the element, or NULL if key couldn't be found.
+ * Return: The value associated with the element,
+ * or NULL if key couldn't be found.
  */
 char *hash_table_get(const hash_table_t *ht, const char *key)
 {
